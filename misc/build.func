@@ -549,9 +549,9 @@ build_container() {
   TEMP_DIR=$(mktemp -d)
   pushd $TEMP_DIR >/dev/null
   if [ "$var_os" == "alpine" ]; then
-    export FUNCTIONS_FILE_PATH="$(curl -s $SCRIPT_INSTALL_FUNC)"
-  else
     export FUNCTIONS_FILE_PATH="$(curl -s $SCRIPT_INSTALL_ALPINE_FUNC)"
+  else
+    export FUNCTIONS_FILE_PATH="$(curl -s $SCRIPT_INSTALL_FUNC)"
   fi
   export CACHER="$APT_CACHER"
   export CACHER_IP="$APT_CACHER_IP"
