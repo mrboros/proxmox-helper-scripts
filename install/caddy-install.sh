@@ -36,13 +36,20 @@ set -o pipefail
 msg_ok "Installed dependency: Golang"
 
 msg_info "Setting up xCaddy"
-cd /opt
+cd /root
 RELEASE=$(curl -s https://api.github.com/repos/caddyserver/xcaddy/releases/latest | grep "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
 wget -q https://github.com/caddyserver/xcaddy/releases/download/${RELEASE}/xcaddy_${RELEASE:1}_linux_amd64.deb
 $STD dpkg -i xcaddy_${RELEASE:1}_linux_amd64.deb
 rm -rf /opt/xcaddy*
+msg_ok "Set up xCaddy"
+
+msg_info "Building Caddy with the required plugins"
 $STD xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/mholt/caddy-l4/layer4
-msg_ok "Setting up xCaddy"
+systemctl stop caddy
+cp ./caddy /usr/bin/caddy
+systemctl start caddy
+$STD systemctl status caddy
+msg_ok "Built Caddy with the required plugins"
 
 motd_ssh
 customize
