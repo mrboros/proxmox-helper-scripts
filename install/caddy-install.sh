@@ -48,7 +48,6 @@ $STD xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/mholt
 systemctl stop caddy
 cp ./caddy /usr/bin/caddy
 systemctl start caddy
-$STD systemctl status caddy
 msg_ok "Built Caddy with the required plugins"
 
 motd_ssh
