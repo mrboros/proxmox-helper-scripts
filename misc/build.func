@@ -8,12 +8,12 @@ variables() {
   INTEGER='^[0-9]+([.][0-9]+)?$'     # it defines the INTEGER regular expression pattern.
 
   # Global URLs and resources
-  GITHUB_REPO=https://github.com/mrboros/proxmox-helper-scripts
+  export GITHUB_REPO=https://github.com/mrboros/proxmox-helper-scripts
   SCRIPT_CREATE_LXC=https://raw.githubusercontent.com/mrboros/proxmox-helper-scripts/refs/heads/main/ct/create_lxc.sh
   SCRIPT_INSTALL_FUNC=https://raw.githubusercontent.com/mrboros/proxmox-helper-scripts/refs/heads/main/misc/install.func
   SCRIPT_INSTALL_ALPINE_FUNC=https://raw.githubusercontent.com/tteck/Proxmox/main/misc/alpine-install.func
   SCRIPT_INSTALL_APP=https://raw.githubusercontent.com/mrboros/proxmox-helper-scripts/refs/heads/main/install/$var_install.sh
-  SCRIPT_CT_APP_INSTALL=https://raw.githubusercontent.com/mrboros/proxmox-helper-scripts/refs/heads/main/ct/$NSAPP.sh
+  export SCRIPT_CT_APP_INSTALL=https://raw.githubusercontent.com/mrboros/proxmox-helper-scripts/refs/heads/main/ct/$NSAPP.sh
 }
 
 # This function sets various color variables using ANSI escape codes for formatting text in the terminal.
@@ -537,8 +537,6 @@ start() {
 
 # This function collects user settings and integrates all the collected information.
 build_container() {
-#  if [ "$VERB" == "yes" ]; then set -x; fi
-
   if [ "$CT_TYPE" == "1" ]; then
     FEATURES="keyctl=1,nesting=1"
   else
@@ -553,6 +551,7 @@ build_container() {
   else
     export FUNCTIONS_FILE_PATH="$(curl -s $SCRIPT_INSTALL_FUNC)"
   fi
+  
   export CACHER="$APT_CACHER"
   export CACHER_IP="$APT_CACHER_IP"
   export tz="$timezone"
