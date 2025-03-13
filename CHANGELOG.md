@@ -1,17 +1,23 @@
-<div align="center">
-  <a href="#">
-    <img src="https://raw.githubusercontent.com/tteck/Proxmox/main/misc/images/logo.png" height="100px" />
- </a>
-</div>
-<h1 align="center">Changelog</h1>
+## 2025-03-13
 
-<h3 align="center">All notable changes to this project will be documented in this file.</h3>
+### Added
 
-> [!CAUTION]
-Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit the project's popularity for potentially malicious purposes.
+- **WikiJS** LXC
 
-> [!NOTE]
-All LXC instances created using this repository come pre-installed with Midnight Commander, which is a command-line tool (`mc`) that offers a user-friendly file and directory management interface for the terminal environment.
+## 2025-03-11
+
+Forked from original tteckster's repository.
+
+### Added
+
+- **Caddy** LXC
+- **PiHole** LXC
+- **Uptime Kuma** LXC
+
+### Changed
+
+- Completely changed the script source mechanisms: everything being fetched is coming from this repository.
+- Moved currently-not-used artifacts to the `_old` directory.
 
 ## 2024-10-27
 
