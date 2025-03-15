@@ -583,6 +583,16 @@ build_container() {
   bash -c "$(wget -qLO - $SCRIPT_CREATE_LXC)" || exit
 
   LXC_CONFIG=/etc/pve/lxc/${CTID}.conf
+
+  # Add tailscale capability to run in LXC containers
+  if [ "$CT_TYPE" == "1" ]; then
+    cat <<EOF >>$LXC_CONFIG
+# Tailscale config
+lxc.cgroup2.devices.allow: c 10:200 rwm
+lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file
+EOF
+  fi
+
   if [ "$CT_TYPE" == "0" ]; then
     cat <<EOF >>$LXC_CONFIG
 # USB passthrough
