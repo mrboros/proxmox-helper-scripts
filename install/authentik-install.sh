@@ -66,7 +66,8 @@ wget -q https://www.python.org/ftp/python/3.12.9/Python-3.12.9.tgz -O Python.tgz
 tar -zxf Python.tgz
 cd Python-3.12.9
 $STD ./configure --enable-optimizations
-$STD make altinstall -j8
+#TODO make the j parameter in sync with var_cpu parameter
+$STD make altinstall -j6
 cd ~
 $STD update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.12 1
 msg_ok "Setup Python 3.12.9"
