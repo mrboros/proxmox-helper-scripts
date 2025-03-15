@@ -67,8 +67,8 @@ tar -zxf Python.tgz
 cd Python-3.12.9
 $STD ./configure --enable-optimizations
 #TODO make the j parameter in sync with var_cpu parameter
-export MAKEFLAGS=-j6
-$STD make altinstall
+$STD make -j6 all
+$STD make -j6 altinstall
 cd ~
 $STD update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.12 1
 msg_ok "Setup Python 3.12.9"
