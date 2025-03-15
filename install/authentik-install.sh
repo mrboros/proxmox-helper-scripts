@@ -60,16 +60,16 @@ cat <<EOF >/etc/GeoIP.conf
 EOF
 msg_ok "Installed GeoIP"
 
-msg_info "Setting up Python 3"
+msg_info "Setting up Python 3.12.9"
 cd /tmp
-wget -q https://www.python.org/ftp/python/3.12.1/Python-3.12.1.tgz -O Python.tgz
+wget -q https://www.python.org/ftp/python/3.12.9/Python-3.12.9.tgz -O Python.tgz
 tar -zxf Python.tgz
-cd Python-3.12.1
+cd Python-3.12.9
 $STD ./configure --enable-optimizations
-$STD make altinstall
+$STD make altinstall -j8
 cd ~
 $STD update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.12 1
-msg_ok "Setup Python 3"
+msg_ok "Setup Python 3.12.9"
 
 msg_info "Setting up Node.js Repository"
 mkdir -p /etc/apt/keyrings
