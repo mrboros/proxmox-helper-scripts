@@ -67,7 +67,7 @@ tar -zxf Python.tgz
 cd Python-3.12.9
 $STD ./configure --enable-optimizations
 #TODO make the j parameter in sync with var_cpu parameter
-$STD make -j6 all
+$STD make -j6
 $STD make -j6 altinstall
 cd ~
 $STD update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.12 1
@@ -188,7 +188,7 @@ motd_ssh
 customize
 
 msg_info "Cleaning up"
-rm -rf /tmp/Python-3.12.1
+rm -rf /tmp/Python-3.12.9
 rm -rf /tmp/Python.tgz
 rm -rf go/
 rm -rf /tmp/geoipupdate.deb
