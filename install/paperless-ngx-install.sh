@@ -58,7 +58,8 @@ $STD apt-get install -y --no-install-recommends \
   pngquant \
   zlib1g \
   tesseract-ocr \
-  tesseract-ocr-eng
+  tesseract-ocr-eng \
+  tesseract-ocr-hun
   
 cd /tmp
 wget -q https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10050/ghostscript-10.05.0.tar.gz
