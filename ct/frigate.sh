@@ -23,7 +23,7 @@ var_disk="20"
 var_cpu="4"
 var_ram="4096"
 var_os="debian"
-var_version="11"
+var_version="12"
 variables
 color
 catch_errors
@@ -41,14 +41,14 @@ function default_settings() {
   GATE=""
   APT_CACHER=""
   APT_CACHER_IP=""
-  DISABLEIP6="no"
+  DISABLEIP6="yes"
   MTU=""
   SD=""
   NS=""
   MAC=""
   VLAN=""
-  SSH="no"
-  VERB="no"
+  SSH="yes"
+  VERB="yes"
   echo_default
 }
 

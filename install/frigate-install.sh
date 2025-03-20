@@ -14,7 +14,7 @@ network_check
 update_os
 
 msg_info "Installing Dependencies (Patience)"
-$STD apt-get install -y {curl,sudo,mc,git,gpg,automake,build-essential,xz-utils,libtool,ccache,pkg-config,libgtk-3-dev,libavcodec-dev,libavformat-dev,libswscale-dev,libv4l-dev,libxvidcore-dev,libx264-dev,libjpeg-dev,libpng-dev,libtiff-dev,gfortran,openexr,libatlas-base-dev,libssl-dev,libtbb2,libtbb-dev,libdc1394-22-dev,libopenexr-dev,libgstreamer-plugins-base1.0-dev,libgstreamer1.0-dev,gcc,gfortran,libopenblas-dev,liblapack-dev,libusb-1.0-0-dev,jq,moreutils}
+$STD apt-get install -y {curl,sudo,mc,git,gpg,ca-certificates,automake,build-essential,xz-utils,libtool,ccache,pkg-config,libgtk-3-dev,libavcodec-dev,libavformat-dev,libswscale-dev,libv4l-dev,libxvidcore-dev,libx264-dev,libjpeg-dev,libpng-dev,libtiff-dev,gfortran,openexr,libatlas-base-dev,libssl-dev,libtbb2,libtbb-dev,libdc1394-22-dev,libopenexr-dev,libgstreamer-plugins-base1.0-dev,libgstreamer1.0-dev,gcc,gfortran,libopenblas-dev,liblapack-dev,libusb-1.0-0-dev,jq,moreutils}
 msg_ok "Installed Dependencies"
 
 msg_info "Installing Python3 Dependencies"
@@ -25,7 +25,7 @@ msg_ok "Installed Python3 Dependencies"
 msg_info "Installing Node.js"
 mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" >/etc/apt/sources.list.d/nodesource.list
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main" >/etc/apt/sources.list.d/nodesource.list
 $STD apt-get update
 $STD apt-get install -y nodejs
 msg_ok "Installed Node.js"
@@ -103,7 +103,7 @@ fi
 echo "tmpfs   /tmp/cache      tmpfs   defaults        0       0" >> /etc/fstab
 msg_ok "Installed Frigate $RELEASE"
 
-if grep -q -o -m1 'avx[^ ]*' /proc/cpuinfo; then
+if grep -q -o -m1 -E 'avx[^ ]*' /proc/cpuinfo; then
   msg_ok "AVX Support Detected"
   msg_info "Installing Openvino Object Detection Model (Resilience)"
   $STD pip install -r /opt/frigate/docker/main/requirements-ov.txt
