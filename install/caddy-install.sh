@@ -44,11 +44,15 @@ rm -rf /opt/xcaddy*
 msg_ok "Set up xCaddy"
 
 msg_info "Building Caddy with the required plugins"
-$STD xcaddy build --with github.com/caddy-dns/cloudflare --with github.com/mholt/caddy-l4/layer4
+$STD xcaddy build --with github.com/caddyserver/transform-encoder --with github.com/caddy-dns/cloudflare --with github.com/mholt/caddy-l4/layer4
 systemctl stop caddy
 cp ./caddy /usr/bin/caddy
 systemctl start caddy
 msg_ok "Built Caddy with the required plugins"
+
+msg_info "Installing fail2ban"
+$STD apt install -y fail2ban iptables
+msg_ok "Installed fail2ban"
 
 motd_ssh
 customize
